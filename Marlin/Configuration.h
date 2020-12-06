@@ -121,7 +121,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200
+#define BAUDRATE 250000
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
@@ -492,9 +492,9 @@
     #define DEFAULT_Ki_LIST {   1.08,   1.08 }
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
-    #define DEFAULT_Kp  22.20
-    #define DEFAULT_Ki   1.08
-    #define DEFAULT_Kd 114.00
+    #define DEFAULT_Kp  20.85
+    #define DEFAULT_Ki   1.30
+    #define DEFAULT_Kd 83.68
   #endif
 #endif // PIDTEMP
 
@@ -736,7 +736,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 100 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 101 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -771,9 +771,9 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          500    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_ACCELERATION          700    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION   2000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -785,8 +785,8 @@
  */
 #define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
-  #define DEFAULT_XJERK 10.0
-  #define DEFAULT_YJERK 10.0
+  #define DEFAULT_XJERK 7.0
+  #define DEFAULT_YJERK 7.0
   #define DEFAULT_ZJERK  0.3
 
   #define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves
@@ -1117,8 +1117,8 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 190
-#define Y_BED_SIZE 190
+#define X_BED_SIZE 187
+#define Y_BED_SIZE 200
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1126,7 +1126,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 190
+#define Z_MAX_POS 130
 
 /**
  * Software Endstops
@@ -1277,7 +1277,7 @@
  * Normally G28 leaves leveling disabled on completion. Enable
  * this option to have G28 restore the prior leveling state.
  */
-//#define RESTORE_LEVELING_AFTER_G28
+#define RESTORE_LEVELING_AFTER_G28
 
 /**
  * Enable detailed logging of G28, G29, M48, etc.
@@ -1286,11 +1286,11 @@
  */
 //#define DEBUG_LEVELING_FEATURE
 
-#if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_BILINEAR, AUTO_BED_LEVELING_UBL)
+//#if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_BILINEAR, AUTO_BED_LEVELING_UBL)
   // Gradually reduce leveling correction until a set height is reached,
   // at which point movement will be level to the machine's XY plane.
   // The height can be set with M420 Z<height>
-  #define ENABLE_LEVELING_FADE_HEIGHT
+  //#define ENABLE_LEVELING_FADE_HEIGHT
 
   // For Cartesian machines, instead of dividing moves on mesh boundaries,
   // split up moves into short segments like a Delta. This follows the
